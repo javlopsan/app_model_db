@@ -51,7 +51,7 @@ def add_customer():
     # Insertamos los valores en la base de datos
     cursor.execute("INSERT INTO campañas (TV, Radio, Newspaper, Sales) VALUES (?, ?, ?, ?)", (tv, radio, newspaper, sales))
     conn.commit()
-    conn.clos()
+    conn.close()
 
     return {"message": "Data ingested successfully"}, 201
 
