@@ -49,8 +49,9 @@ def add_customer():
     sales = data['sales']
 
     # Insertamos los valores en la base de datos
-    cursor.execute("INSERT INTO advertising (TV, Radio, Newspaper, Sales) VALUES (?, ?, ?, ?)", (tv, radio, newspaper, sales))
+    cursor.execute("INSERT INTO campañas (TV, Radio, Newspaper, Sales) VALUES (?, ?, ?, ?)", (tv, radio, newspaper, sales))
     conn.commit()
+    conn.clos()
 
     return {"message": "Data ingested successfully"}, 201
 
@@ -60,7 +61,7 @@ def retrain():
     conn = sqlite3.connect('data/advertising.db')
 
     # Leemos los datos de la base de datos
-    df = pd.read_sql_query("SELECT * from advertising", conn)
+    df = pd.read_sql_query("SELECT * from campañas", conn)
 
     # Entrenamos el modelo con los nuevos datos
     from sklearn.linear_model import LinearRegression
