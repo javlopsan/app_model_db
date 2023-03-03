@@ -70,7 +70,7 @@ def retrain():
 
     # Guardamos el modelo
     pickle.dump(model, open('data/advertising_model', 'wb'))
-
+    conn.close()
     return {"message": "Model retrained successfully"}, 200
 
 
